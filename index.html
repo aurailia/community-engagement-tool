@@ -301,6 +301,20 @@
   .pc-cancel:hover { color: var(--text-secondary); }
 
 
+  /* ---------- Rooted (manifestation) view ---------- */
+  .rooted-concept { margin-bottom: 26px; }
+  .rooted-concept-head { font-family: var(--font-serif); font-size: 22px; font-weight: 600; font-style: italic; color: var(--lav-soft); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border-soft); display: flex; align-items: center; gap: 10px; }
+  .rooted-concept-head::before { content: "\2726"; color: var(--pink); font-size: 13px; font-style: normal; }
+  .rooted-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .rooted-card { background: var(--panel); border: 1px solid var(--border-soft); border-radius: 15px; padding: 18px; cursor: pointer; transition: border-color .2s, transform .2s, background .2s; display: flex; flex-direction: column; gap: 9px; }
+  .rooted-card:hover { border-color: var(--border-glow); transform: translateY(-2px); background: var(--panel-hover); box-shadow: var(--shadow-glow); }
+  .rooted-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+  .rooted-type { font-family: var(--font-mono); font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--teal-soft); background: rgba(79,214,196,0.09); border: 1px solid rgba(79,214,196,0.28); border-radius: 20px; padding: 4px 10px; white-space: nowrap; }
+  .rooted-card-title { font-family: var(--font-serif); font-size: 21px; font-weight: 600; line-height: 1.18; }
+  .rooted-card-preview { color: var(--text-secondary); font-size: 13px; line-height: 1.55; flex: 1; }
+  .rooted-card-foot { display: flex; align-items: center; padding-top: 10px; border-top: 1px solid var(--border-soft); font-family: var(--font-mono); font-size: 9px; letter-spacing: 1.1px; text-transform: uppercase; }
+  .rooted-card-foot .open-cue { margin-left: auto; color: var(--pink-soft); }
+
   /* ---------- Weekly Rhythm view ---------- */
   .rhythm-grid { display: flex; flex-direction: column; gap: 14px; }
   .rhythm-day { background: var(--panel); border: 1px solid var(--border-soft); border-radius: 16px; padding: 16px 18px; }
@@ -372,6 +386,7 @@
     .week-actions .surprise-btn, .week-actions .action-btn { width: 100%; justify-content: center; text-align: center; }
     .day-post-title { font-size: 16px; }
     .rhythm-cards { grid-template-columns: 1fr; }
+    .rooted-cards { grid-template-columns: 1fr; }
     .day-suggest-row { flex-wrap: wrap; }
   }
   @media (min-width: 861px) { .sidebar-backdrop { display: none !important; } }
@@ -404,6 +419,7 @@
       <button class="side-nav-btn active" id="viewBrowse" onclick="setView('browse')"><span class="ico">&#9635;</span> Browse posts</button>
       <button class="side-nav-btn" id="viewWeek" onclick="setView('week')"><span class="ico">&#128197;</span> This week <span class="badge" id="weekBadge" style="display:none;"></span></button>
       <button class="side-nav-btn" id="viewRhythm" onclick="setView('rhythm')"><span class="ico">&#127765;</span> Weekly rhythm</button>
+      <button class="side-nav-btn" id="viewRooted" onclick="setView('rooted')"><span class="ico">&#128302;</span> Rooted</button>
       <button class="side-nav-btn" id="viewCustomize" onclick="setView('customize')"><span class="ico">&#10022;</span> Make it yours</button>
     </nav>
     <div class="side-label" id="shelfLabel">Shelves</div>
@@ -449,6 +465,16 @@
         </span>
       </div>
       <div id="weekBody"></div>
+    </div>
+
+    <!-- ROOTED VIEW -->
+    <div id="view-rooted" style="display:none;">
+      <header class="hero">
+        <div class="hero-eyebrow">Manifestation, the way you teach it</div>
+        <h1 class="hero-title"><em>Rooted</em></h1>
+        <p class="hero-sub">The frequency work underneath everything here. These posts turn the core manifestation teachings, living in the end, the feeling is the secret, revision, I AM, and assumptions hardening into fact, into practices and prompts your people can actually do. Drawn from the lineage of Neville Goddard, in your voice. Tap any one to open, copy, or add it to your week.</p>
+      </header>
+      <div id="rootedBody"></div>
     </div>
 
     <!-- WEEKLY RHYTHM VIEW -->
@@ -975,6 +1001,77 @@ const POSTS = [
     gif:"Person tapping chin, deciding",
     boost:"A validation poll is <b>market research disguised as engagement</b> — you find out if an offer will land BEFORE you build it, and the 'why' comments hand you the sales copy. Always include a 'different idea' option.",
     image:"Square 1:1, a glowing balance scale with a question mark of light above it, soft pink and gold sparkles, deep cosmic background, decisive luxury aesthetic, no text" },
+
+  /* ============ ROOTED: manifestation teachings ============ */
+  { id:201, shelf:"Rooted", category:"Living in the End", type:"Daily Practice", rooted:true,
+    headline:"Live from the end today \ud83c\udf1f",
+    post:"Today's practice: live from the end \ud83c\udf1f\n\nPick the thing you want. Now, for just 2 minutes, don't wish for it. Be the woman who already has it.\n\nHow does she stand? What does she NOT worry about anymore? What's she grateful for as she moves through her day?\n\nStay in that feeling as long as you can. The wish granted isn't out there in the future. It's a state you step into.\n\nDrop below \ud83d\udc47 what did you feel when you lived from the end, even for a minute?",
+    gif:"Woman standing calm and radiant, eyes closed, sunlight on her face",
+    boost:"Living in the end is the heart of this whole practice \u2014 you're not chasing the desire, you're occupying the state where it's already yours. Asking members what they FELT (not what they want) keeps them in the assumption instead of the wanting.",
+    image:"Square 1:1, a serene woman standing in golden light with her eyes closed and a soft knowing smile, radiant aura of pink and gold, deep cosmic background with stars, manifestation luxury aesthetic, no text" },
+
+  { id:202, shelf:"Rooted", category:"Living in the End", type:"Discussion Prompt", rooted:true,
+    headline:"What does the day AFTER look like? \ud83c\udf05",
+    post:"Let's dream in detail \ud83c\udf05\n\nImagine it's the day AFTER your desire came true. It's done. It's real. You're living in it.\n\nWalk us through that ordinary morning:\n\u2615 what are you doing?\n\ud83d\udcf1 what's the first message you read?\n\ud83d\udc9b what feels different in your body?\n\nGet specific. Specificity is how you make it real. Drop your 'day after' below \ud83d\udc47",
+    boost:"The 'day after' framing tricks the mind out of hoping and into remembering \u2014 you describe it as already-happened, which is exactly the state that manifests. The specific sensory details are what make the assumption feel true.",
+    gif:"Peaceful morning scene, coffee and soft light, contentment",
+    image:"Square 1:1, a dreamy morning scene with a steaming mug by a sunlit window, soft pink and gold light spilling in, tiny sparkles, calm abundant luxury aesthetic, deep cosmic edges, no text" },
+
+  { id:203, shelf:"Rooted", category:"The Feeling is the Secret", type:"Daily Practice", rooted:true,
+    headline:"Feel it first \ud83d\udc9b",
+    post:"The feeling is the secret \ud83d\udc9b\n\nBefore your feet hit the floor tomorrow, don't reach for your phone. Reach for the FEELING.\n\nThe feeling of the thing already being yours. Relief. Ease. Quiet certainty. Let it fill your body for 60 seconds before the day begins.\n\nYou're not manifesting the thing. You're manifesting from the feeling of already having it.\n\nCome back and tell us \ud83d\udc47 what feeling did you choose to wake up in?",
+    boost:"This teaches that the feeling comes first, not the proof \u2014 you generate the emotional state of the wish fulfilled and let reality catch up. Doing it before phones and to-do lists means they set the frequency before the world sets it for them.",
+    gif:"Person waking slowly, stretching in soft morning light, peaceful",
+    image:"Square 1:1, a soft-focus scene of hands resting over a glowing heart center emitting warm golden light, pink and lavender aura, deep cosmic background with stardust, serene luxury aesthetic, no text" },
+
+  { id:204, shelf:"Rooted", category:"The Feeling is the Secret", type:"Journal Prompt", rooted:true,
+    headline:"If it were already true \u2728",
+    post:"Journal with me \u2728\n\nFinish this, and don't rush it:\n\n\"If it were already true, I would feel ______.\"\n\nWrite the feeling. Then write what you'd do differently today if you actually felt that way right now.\n\nHere's the secret: you don't have to wait for the proof to feel it. You get to feel it first. That feeling IS the bridge.\n\nDrop your sentence below \ud83d\udc47",
+    boost:"Naming the feeling and then acting from it collapses the gap between wanting and having. The 'what would you do differently' question turns an abstract feeling into embodied action, which is where real shifts happen.",
+    gif:"Hand writing in a journal by candlelight, intimate and calm",
+    image:"Square 1:1, an open journal with a glowing pen trailing gold light across the page, soft candlelight, pink and lavender tones, deep cosmic background, intimate luxury aesthetic, no text" },
+
+  { id:205, shelf:"Rooted", category:"Revision", type:"Daily Practice", rooted:true,
+    headline:"Rewrite today before you sleep \ud83c\udf19",
+    post:"Tonight, we revise \ud83c\udf19\n\nThink of one moment today that didn't go the way you wanted. A conversation, a number, a wobble.\n\nNow replay it in your mind \u2014 but rewrite it. See it going beautifully. Feel the version where it worked out. Live that scene until it feels more real than what actually happened.\n\nYou're not lying to yourself. You're choosing which version gets to become your story.\n\nWhat did you revise tonight? Share below \ud83d\udc47",
+    boost:"Revision teaches that the past isn't fixed \u2014 you can edit the emotional charge of a memory and change what it creates going forward. Doing it at night lets the revised scene settle in before sleep, which is when it takes root.",
+    gif:"Person peacefully closing eyes at night, soft moonlight, releasing",
+    image:"Square 1:1, a tranquil night scene with a glowing crescent moon and soft rewind-like light swirls in pink and gold, stars scattered, calm reflective luxury aesthetic, deep cosmic background, no text" },
+
+  { id:206, shelf:"Rooted", category:"Revision", type:"Discussion Prompt", rooted:true,
+    headline:"When rewriting a memory changed something \ud83d\udd04",
+    post:"Real talk \ud83d\udd04\n\nHave you ever gone back and revised a memory \u2014 changed how you replayed it in your mind \u2014 and watched something shift in real life afterward?\n\nMaybe a relationship softened. Maybe a fear lost its grip. Maybe money moved.\n\nTell us the story \ud83d\udc47 I think we underestimate how much power we have to edit the past and change the present.",
+    boost:"Inviting real experiences makes an abstract concept believable \u2014 members convince each other far more than a teaching post ever could. Their stories become social proof that revision actually works.",
+    gif:"Thoughtful nod, a knowing 'it really works' expression",
+    image:"Square 1:1, two overlapping translucent scenes dissolving into one another with golden light between them, soft pink haze, deep cosmic background with stars, transformational luxury aesthetic, no text" },
+
+  { id:207, shelf:"Rooted", category:"I AM", type:"Daily Practice", rooted:true,
+    headline:"Mind your 'I AM' today \ud83d\udde3\ufe0f",
+    post:"Today, listen to yourself \ud83d\udde3\ufe0f\n\nEvery time you say 'I am ___' today, catch it. Especially the sneaky ones:\n'I'm so behind.' 'I'm exhausted.' 'I'm bad with money.'\n\nWhatever follows 'I am' is an instruction. You're assigning yourself an identity every time.\n\nSo flip the limiting ones. 'I am behind' becomes 'I am exactly on time.' Feel the difference.\n\nDrop one 'I am' you caught and flipped today \ud83d\udc47",
+    boost:"'I AM' is identity-level work \u2014 what you attach to it, you become. Making members catch and flip their statements in real time builds awareness of the frequency they're broadcasting all day without noticing.",
+    gif:"Person catching themselves mid-thought, then smiling with intention",
+    image:"Square 1:1, glowing words of light forming and dissolving around a serene silhouette, warm pink and gold letters, deep cosmic background with stars, empowering luxury aesthetic, no text" },
+
+  { id:208, shelf:"Rooted", category:"I AM", type:"Journal Prompt", rooted:true,
+    headline:"I am her, ten times over \ud83d\udc51",
+    post:"Claiming practice \ud83d\udc51\n\nFinish 'I am ___' ten times \u2014 but as your next level self. The version of you who already has it all.\n\nNot 'I want to be.' Not 'I'm becoming.' Just 'I AM.'\n\nWrite all ten. Notice which ones feel like a stretch \u2014 those are the exact ones to keep saying until they feel like home.\n\nDrop your boldest one below \ud83d\udc47 let us witness you claiming her.",
+    boost:"Speaking as 'I am' (not 'I'm becoming') is the whole point \u2014 becoming keeps it in the future, I AM claims it now. Sharing the boldest one publicly is a micro-act of assuming the identity out loud, which strengthens it.",
+    gif:"Confident woman lifting her chin, stepping into her power",
+    image:"Square 1:1, a radiant crowned silhouette made of pink and gold light standing tall among stars, regal and serene, deep cosmic background, empowering luxury aesthetic, no text" },
+
+  { id:209, shelf:"Rooted", category:"Assumptions Harden Into Fact", type:"Discussion Prompt", rooted:true,
+    headline:"What are you assuming this week? \ud83d\udd2e",
+    post:"Choose your assumption \ud83d\udd2e\n\nHere's the wild part: your world is shaped by what you quietly assume to be true. Not what you hope. What you ASSUME.\n\nSo let's be deliberate. What are you choosing to assume this week?\n\n\"I assume ______.\"\n(clients are on their way \u00b7 money finds me easily \u00b7 it always works out for me)\n\nSay it like it's just how reality works for you. Drop your assumption below \ud83d\udc47",
+    boost:"An assumption held long enough hardens into fact \u2014 this post makes members choose theirs consciously instead of defaulting to old fears. Phrasing it as 'just how reality works for me' removes the hope and installs it as a given.",
+    gif:"Person nodding with quiet certainty, unbothered and sure",
+    image:"Square 1:1, a glowing seed of light crystallizing into a solid radiant gem, pink and gold transformation, deep cosmic background with sparkles, certain abundant luxury aesthetic, no text" },
+
+  { id:210, shelf:"Rooted", category:"Assumptions Harden Into Fact", type:"Journal Prompt", rooted:true,
+    headline:"Releasing the old, assuming the new \ud83c\udf00",
+    post:"Two columns, one shift \ud83c\udf00\n\nDraw a line down the page.\n\nLeft side: the old assumption you've been living in without meaning to. ('Money is hard.' 'I have to hustle to be safe.')\n\nRight side: the new one you're choosing to assume from now on. ('Money is magnetic to me.' 'I'm safe, and it comes with ease.')\n\nThen cross out the left. Fully. Give the right side your whole belief.\n\nWhat old assumption are you releasing? Share below \ud83d\udc47",
+    boost:"Naming the old assumption drains its power, and writing the new one begins installing it. The physical act of crossing out the old creates a felt sense of choice \u2014 members leave feeling they actively swapped their operating system.",
+    gif:"Hand crossing out old words, writing new ones with intention",
+    image:"Square 1:1, a journal page split by a glowing gold line, old faded words on one side dissolving into radiant new ones on the other, pink and lavender light, deep cosmic background, transformational luxury aesthetic, no text" },
 ];
 
 
@@ -1050,7 +1147,7 @@ function anyPostById(id){
   return POSTS.find(function(x){return x.id===id;}) || RITUAL_POSTS.find(function(x){return x.id===id;});
 }
 
-const SHELF_ORDER = ["Welcome & Connect","Play & Engage","Teach & Provoke","Tea & Transparency","Celebrate & Spotlight","Sell & Announce"];
+const SHELF_ORDER = ["Welcome & Connect","Play & Engage","Teach & Provoke","Tea & Transparency","Celebrate & Spotlight","Sell & Announce","Rooted"];
 const SHELVES = ["All", ...SHELF_ORDER];
 let activeShelf = "All";
 let activeCat = null;
@@ -1155,16 +1252,19 @@ function setView(v){
   document.getElementById("view-browse").style.display = (v==="browse") ? "" : "none";
   document.getElementById("view-week").style.display = (v==="week") ? "" : "none";
   document.getElementById("view-rhythm").style.display = (v==="rhythm") ? "" : "none";
+  document.getElementById("view-rooted").style.display = (v==="rooted") ? "" : "none";
   document.getElementById("view-customize").style.display = (v==="customize") ? "" : "none";
   document.getElementById("viewBrowse").classList.toggle("active", v==="browse");
   document.getElementById("viewWeek").classList.toggle("active", v==="week");
   document.getElementById("viewRhythm").classList.toggle("active", v==="rhythm");
+  document.getElementById("viewRooted").classList.toggle("active", v==="rooted");
   document.getElementById("viewCustomize").classList.toggle("active", v==="customize");
   // shelves only relevant in browse
   document.getElementById("shelfLabel").style.display = (v==="browse") ? "" : "none";
   document.getElementById("shelves").style.display = (v==="browse") ? "" : "none";
   if (v==="week") renderWeek();
   if (v==="rhythm") renderRhythm();
+  if (v==="rooted") renderRooted();
   if (v==="customize") renderCustomize();
   closeSidebarMobile();
   window.scrollTo(0,0);
@@ -1355,6 +1455,39 @@ function clearPlan(){
 
 /* ---- This Week view (day grid) ---- */
 /* ---- Weekly Rhythm view ---- */
+/* ---- Rooted (manifestation) view ---- */
+const ROOTED_CONCEPTS = ["Living in the End","The Feeling is the Secret","Revision","I AM","Assumptions Harden Into Fact"];
+function renderRooted(){
+  const body = document.getElementById("rootedBody");
+  let html = "";
+  ROOTED_CONCEPTS.forEach(function(concept){
+    const items = POSTS.filter(function(p){ return p.shelf==="Rooted" && p.category===concept; });
+    if (!items.length) return;
+    const cards = items.map(function(p){
+      const onPlan = daysOfPost(p.id).length > 0;
+      const pd = store.posted[p.id];
+      const typeLabel = p.type || "";
+      return '<div class="rooted-card" onclick="openModal('+p.id+')">'+
+          '<div class="rooted-card-top">'+
+            '<span class="rooted-type">'+typeLabel+'</span>'+
+            '<div class="card-btns">'+
+              '<button class="fav-btn '+(store.favorites.includes(p.id)?'active':'')+'" title="Save" onclick="event.stopPropagation();toggleFav('+p.id+');renderRooted()">'+(store.favorites.includes(p.id)?'\u2665':'\u2661')+'</button>'+
+            '</div>'+
+          '</div>'+
+          '<div class="rooted-card-title">'+p.headline+'</div>'+
+          '<div class="rooted-card-preview">'+escapeHtml(p.post.split("\n")[0])+'</div>'+
+          '<div class="rooted-card-foot">'+(pd?'<span class="posted-badge">\u2713 Used '+fmtDate(pd)+'</span>':'<span class="open-cue">Open + copy \u2192</span>')+'</div>'+
+        '</div>';
+    }).join("");
+    html +=
+      '<div class="rooted-concept">'+
+        '<div class="rooted-concept-head">'+concept+'</div>'+
+        '<div class="rooted-cards">'+cards+'</div>'+
+      '</div>';
+  });
+  body.innerHTML = html;
+}
+
 function renderRhythm(){
   const body = document.getElementById("rhythmBody");
   let html = '<div class="rhythm-grid">';
@@ -1612,6 +1745,14 @@ function openModal(id){
       '</div>'+
     '</div>'+
     '<div class="modal-divider"></div>'+
+    '<div class="modal-section">'+
+      '<div class="block-label">Add your '+TEACHING_NAME+' teaching</div>'+
+      '<p class="nano-note" style="margin:0 0 12px;">Want this post to teach, not just spark comments? Copy the prompt below, open Claude, paste it, and hit send. Claude keeps the hook and weaves in a '+TEACHING_NAME+' mini-teaching in your voice, then hands it back ready to post.</p>'+
+      '<div class="btn-row">'+
+        '<button class="action-btn primary" onclick="copyTeachingPrompt('+p.id+', this)">\u2726 Copy the '+TEACHING_NAME+' teaching prompt</button>'+
+      '</div>'+
+    '</div>'+
+    '<div class="modal-divider"></div>'+
     '<div class="modal-section" id="daySection">'+
       '<div class="block-label">Put it on a day '+
         '<span class="info-tip" tabindex="0" onclick="event.stopPropagation();this.classList.toggle(\'show\')">i<span class="tip-bubble">Your week and posted marks save in this browser only. Switch devices or clear your cache and they reset. It\'s a private working space, not synced anywhere.</span></span>'+
@@ -1715,6 +1856,28 @@ function copyAll(id, btn){
   copyText(both, btn, "Everything copied \u2726");
 }
 
+// The signature teaching this community is built on. When a member rebrands this
+// tool through "Make it yours", they swap this for their own body of work.
+const TEACHING_NAME = "Rooted";
+const TEACHING_DESC = "my signature teaching, rooted in the work of Neville Goddard \u2014 assumption, living in the wish fulfilled, feeling it real, and revision";
+
+function buildTeachingPrompt(p){
+  const postText = p.poll
+    ? p.post + "\n\nPoll options:\n" + p.pollOptions.join("\n")
+    : p.post;
+  return "Take the community post below and expand it into a TEACHING post for my people, in my voice.\n\n" +
+    "The teaching lens is " + TEACHING_NAME + ": " + TEACHING_DESC + ".\n\n" +
+    "Keep the engagement hook and the invitation to comment exactly as strong as it is now \u2014 don't make it a lecture. Under the hook, add a short, grounded mini-teaching (a few sentences to a couple of short paragraphs) that connects the theme of this post to " + TEACHING_NAME + ". Make it feel like me talking to someone in the room, not a textbook. Then land back on the question or call to action so people still comment.\n\n" +
+    "Keep my emojis and the warm, witty tone. Don't make it long for the sake of it \u2014 depth over length.\n\n" +
+    "Here's the post to expand:\n\n" +
+    postText;
+}
+
+function copyTeachingPrompt(id, btn){
+  const p = postById(id); if (!p) return;
+  copyText(buildTeachingPrompt(p), btn, TEACHING_NAME + " teaching prompt copied \u2726");
+}
+
 
 /* ---- Confetti (vanilla canvas, brand palette) ---- */
 function fireConfetti(){
@@ -1805,7 +1968,7 @@ function escapeJs(s){ return String(s).replace(/\\/g,"\\\\").replace(/`/g,"\\`")
 
 
 /* ---- Customize view ---- */
-var czState = { who: "", vibe: "", offer: "", words: "" };
+var czState = { who: "", vibe: "", offer: "", words: "", teaching: "" };
 
 function czBuildPrompt(){
   var who = czState.who.trim() || "[the people you serve, e.g. burnt-out teachers starting a side business]";
@@ -1813,16 +1976,22 @@ function czBuildPrompt(){
   var offer = czState.offer.trim() || "[what you help them do or the offer you run]";
   var words = czState.words.trim();
   var wordsLine = words ? "\n- Words and phrases I use a lot: " + words : "";
+  var teaching = czState.teaching.trim();
+  var teachingLine = teaching ? "\n- My signature teaching / framework: " + teaching : "";
+  var teachingRule = teaching
+    ? "- There's a \"teaching prompt\" feature built on a signature body of work. In the code, find the constants TEACHING_NAME and TEACHING_DESC and rewrite them to reflect MY teaching instead: " + teaching + ". Keep them as valid strings.\n"
+    : "";
   return "You are helping me personalize a library of community engagement posts.\n\n" +
     "I run a community for: " + who + ".\n" +
     "What I help them with / my offer: " + offer + ".\n" +
-    "My voice and tone: " + vibe + "." + wordsLine + "\n\n" +
+    "My voice and tone: " + vibe + "." + wordsLine + teachingLine + "\n\n" +
     "I'm attaching an HTML file. Inside it is a JavaScript array called POSTS, where each item has these fields: headline, post, gif, image, and sometimes boost and pollOptions.\n\n" +
     "Please rewrite the text inside each POSTS item so it speaks directly to my audience and sounds like my voice, while keeping the same engagement purpose of each post. Rules:\n" +
     "- Keep every field name, id, shelf, category, and the overall file structure exactly the same. Only change the wording inside headline, post, gif, image, boost, and pollOptions.\n" +
     "- Keep the emojis and the line breaks (\\n) working.\n" +
     "- Swap any references to the original niche for mine.\n" +
-    "- Don't add or remove posts. Don't touch anything outside the POSTS array.\n" +
+    teachingRule +
+    "- Don't add or remove posts. Don't touch anything outside the POSTS array" + (teaching ? " (except the two teaching constants above)" : "") + ".\n" +
     "- Give me back the full, complete HTML file so I can save it and use it as-is.\n\n" +
     "Once you've rewritten it, hand me the whole file back.";
 }
@@ -1832,6 +2001,7 @@ function czUpdate(){
   czState.vibe = document.getElementById("czVibe").value;
   czState.offer = document.getElementById("czOffer").value;
   czState.words = document.getElementById("czWords").value;
+  czState.teaching = document.getElementById("czTeaching").value;
   document.getElementById("czOutput").textContent = czBuildPrompt();
 }
 
@@ -1849,6 +2019,8 @@ function renderCustomize(){
         '<input id="czVibe" type="text" placeholder="e.g. warm, grounded, a little witchy, no fluff" oninput="czUpdate()"></div>'+
       '<div class="cz-field"><label>Any words or phrases you use a lot? (optional)</label>'+
         '<input id="czWords" type="text" placeholder="e.g. magnetic, cashflow, your people" oninput="czUpdate()"></div>'+
+      '<div class="cz-field"><label>Your signature teaching (optional)</label>'+
+        '<input id="czTeaching" type="text" placeholder="e.g. Rooted, my Neville Goddard work \u2014 or your own framework" oninput="czUpdate()"></div>'+
     '</div>'+
     '<div class="cz-card">'+
       '<h3><span class="num">2</span> Copy your prompt</h3>'+
